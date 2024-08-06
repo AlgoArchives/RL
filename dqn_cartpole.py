@@ -60,12 +60,15 @@ if __name__ == "__main__":
 
     for e in range(episodes):
         state = env.reset()
+        state = np.array(state)  # Convert state to a NumPy array
+        print(f"Initial state shape: {state.shape}")  # Add this line
         state = np.reshape(state, [1, state_size])
         for time in range(500):
             action = agent.act(state)
             next_state, reward, done, _ = env.step(action)
-            reward = reward if not done else -10
+            next_state = np.array(next_state)  # Convert next_state to a NumPy array
             next_state = np.reshape(next_state, [1, state_size])
+            reward = reward if not done else -10
             agent.remember(state, action, reward, next_state, done)
             state = next_state
             if done:

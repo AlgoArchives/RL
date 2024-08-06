@@ -60,8 +60,8 @@ if __name__ == "__main__":
 
     for e in range(episodes):
         state = env.reset()
-        state = np.array(state)  # Convert state to a NumPy array
-        print(f"Initial state shape: {state.shape}")  # Add this line
+        print(f"Initial state: {state}")  # Add this line to inspect the state
+        print(f"Type of state: {type(state)}")  # Add this line to inspect the type of state
         state = np.reshape(state, [1, state_size])
         for time in range(500):
             action = agent.act(state)
